@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramón Cherta — Applied AI & Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0D10;
+    --surface:#14171B;
+    --text:#E9E6E0;
+    --muted:#7A8390;
+    --accent:#FF9F1C;
+    --accent-dim:#B97313;
+    --border:#22262B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:var(--bg);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  ::selection{background:var(--accent);color:#0B0D10;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .wrap{max-width:720px;margin:0 auto;padding:6vh 24px 8vh;}
+
+  /* --- build log --- */
+  .log{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--muted);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:18px 20px;
+    margin-bottom:48px;
+    white-space:pre-wrap;
+  }
+  .log .prompt{color:var(--accent);}
+  .log .ok{color:#5FB27A;}
+  .log-line{opacity:0;animation:reveal .01s linear forwards;}
+  .cursor{display:inline-block;width:8px;height:14px;background:var(--accent);vertical-align:-2px;animation:blink 1s step-end infinite;}
+  @keyframes reveal{to{opacity:1;}}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* --- identity --- */
+  .name{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(28px,5vw,40px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin-bottom:8px;
+  }
+  .role{
+    font-size:16px;
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+    margin-bottom:6px;
+  }
+  .sub{
+    font-size:14px;
+    color:var(--muted);
+    margin-bottom:44px;
+  }
+
+  /* --- sections styled like linker output --- */
+  .section{margin-bottom:40px;}
+  .section-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+  .about p{font-size:15px;color:var(--text);max-width:60ch;}
+
+  .stack{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--text);
+    background:var(--surface);
+    border:1px solid var(--border);
+    padding:5px 10px;
+    border-radius:4px;
+  }
+
+  .links{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+  .link-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 18px;
+    border-bottom:1px solid var(--border);
+    transition:background .15s ease;
+  }
+  .link-row:last-child{border-bottom:none;}
+  .link-row.active:hover{background:var(--surface);}
+  .link-main{display:flex;flex-direction:column;gap:2px;}
+  .link-title{font-size:15px;font-weight:500;}
+  .link-sub{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+  .link-arrow{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:14px;}
+  .link-row.disabled{opacity:.45;}
+  .link-row.disabled .link-arrow{color:var(--muted);}
+
+  footer{
+    margin-top:56px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  footer .status{color:var(--accent);}
+
+  @media (prefers-reduced-motion: reduce){
+    .log-line{opacity:1;animation:none;}
+    .cursor{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="log" id="log" aria-hidden="true"></div>
+
+  <div class="name">Ramón Cherta</div>
+  <div class="role">Applied AI &amp; Full-Stack Developer</div>
+  <div class="sub">3rd-year CS Student · MATCOM, University of Havana</div>
+
+  <div class="section about">
+    <div class="section-label">.about</div>
+    <p>I build complete, working systems — from backend logic to the interface people actually use. Recently: an information retrieval system with RAG and LSI search, an LLM-assisted clinical triage optimizer, and a full-stack clinic management platform built with a small team. Open to internship and entry-level opportunities in applied AI or full-stack development.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">.stack</div>
+    <div class="stack">
+      <span class="tag">Python</span>
+      <span class="tag">Applied ML</span>
+      <span class="tag">React</span>
+      <span class="tag">PostgreSQL</span>
+      <span class="tag">RAG</span>
+      <span class="tag">C</span>
+      <span class="tag">Rust</span>
+      <span class="tag">C++</span>
+      <span class="tag">C#</span>
+      <span class="tag">.NET</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">.links</div>
+    <div class="links">
+      <a class="link-row active" href="https://github.com/ChertaPro" target="_blank" rel="noopener">
+        <div class="link-main">
+          <span class="link-title">GitHub</span>
+          <span class="link-sub">github.com/ChertaPro</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a class="link-row active" href="https://linkedin.com/in/ramon-cherta-1b3145422" target="_blank" rel="noopener">
+        <div class="link-main">
+          <span class="link-title">LinkedIn</span>
+          <span class="link-sub">/in/ramon-cherta</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a class="link-row active" href="mailto:chertapro@gmail.com">
+        <div class="link-main">
+          <span class="link-title">Email</span>
+          <span class="link-sub">chertapro@gmail.com</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+      <div class="link-row disabled">
+        <div class="link-main">
+          <span class="link-title">Blog</span>
+          <span class="link-sub">coming soon</span>
+        </div>
+        <span class="link-arrow">·</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="status">status: online</span> — currently training for HYROX, currently learning applied ML/LLMs
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var log = document.getElementById('log');
+  var lines = [
+    {t:'<span class="prompt">$</span> ./build --target=chertapro.net', d:0},
+    {t:'[1/4] linking about.o ..................... <span class="ok">ok</span>', d:220},
+    {t:'[2/4] linking stack.o ..................... <span class="ok">ok</span>', d:400},
+    {t:'[3/4] linking links.o ..................... <span class="ok">ok</span>', d:580},
+    {t:'[4/4] linking footer.o .................... <span class="ok">ok</span>', d:760},
+    {t:'build finished in 0.94s — 0 warnings, 0 errors', d:980}
+  ];
+
+  if(reduce){
+    log.innerHTML = lines.map(function(l){return l.t;}).join('\n');
+    return;
+  }
+
+  lines.forEach(function(line, i){
+    setTimeout(function(){
+      var span = document.createElement('div');
+      span.className = 'log-line';
+      span.innerHTML = line.t;
+      log.appendChild(span);
+      if(i === lines.length - 1){
+        var cur = document.createElement('span');
+        cur.className = 'cursor';
+        log.appendChild(cur);
+      } else {
+        log.appendChild(document.createTextNode('\n'));
+      }
+    }, line.d);
+  });
+})();
+</script>
+</body>
+</html>
